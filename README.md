@@ -8,8 +8,9 @@ Open `index.html` in a browser. No build step.
 
 | Key | Action |
 | --- | --- |
-| `→` `Space` `PageDown` | Next slide |
-| `←` `PageUp` | Previous slide |
+| `→` `↓` `Space` `PageDown` | Next slide |
+| `←` `↑` `PageUp` | Previous slide |
+| `Home` / `End` | First / last slide |
 | `N` | Toggle speaker notes |
 | `P` | Open presenter window (notes, next slide, timer), synced with the main window |
 | `F` | Fullscreen |
@@ -38,8 +39,6 @@ deck.js        navigation, notes, presenter sync
 Slide numbers are shown in the bottom-right corner of every slide.
 
 ## Open TODOs
-
-The speaker notes mark these with `[TODO]`:
 
 - [ ] Check the SEEK story (slides 8–9) and Mr Yum numbers (slides 10–12) are fine to share publicly.
 - [ ] Rehearse with the presenter timer and cut wherever you run over.
