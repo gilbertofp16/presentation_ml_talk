@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GenAI Maturity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="help">← → navigate · N notes · P presenter · F fullscreen</div>
+
+<div class="viewport">
+<main class="stage">
+
+  <!-- ============ 0. OPENING ============ -->
+
+  <section class="slide title-slide" data-title="Title">
+    <div class="title-top"><span><b>MLAI Meetup</b> · 2026</span></div>
+    <div class="title-card">
+      <h1>GenAI<br>Maturity</h1>
+      <p class="subtitle">From demo to reliable production and agentic engineering</p>
+    </div>
+    <div class="speaker">
+      Gilbert Pochet
+      <span>Staff AI Engineer · Future Secure AI (FSAI)</span>
+    </div>
+    <aside class="notes">
+      <p><strong>[0:00 · ~20s]</strong> Thanks everyone. I'm Gilbert. I've spent about 12 years across the Americas, Germany and Australia turning AI systems into real products, at places like SEEK, oOh!media and Mr Yum. Today I'm a Staff AI Engineer at Future Secure AI.</p>
+      <p>Tonight is about one thing: why so many GenAI projects never get past the demo, and what it takes to get them there.</p>
+    </aside>
+  </section>
+
+  <section class="slide objective" data-title="The goal of this talk">
+    <span class="tag">The goal of this talk</span>
+    <h2>Not lessons. Something you can apply.</h2>
+    <p class="lead">After tonight, I want you to think twice before you…</p>
+    <ol class="twice">
+      <li class="value"><strong>…accept an AI project.</strong><span>Which decision changes? Which OKR does it move?</span></li>
+      <li class="value"><strong>…commit to a number.</strong><span>How will you know you actually hit it?</span></li>
+      <li class="speed"><strong>…say "it's easy, I can do it with AI."</strong><span>A demo is not production.</span></li>
+    </ol>
+    <p class="ref">Jeffrey Pfeffer, <a href="https://www.publishersweekly.com/9780062383167"><em>Leadership BS</em></a> (2015), ch. 1: "Why Inspiration and Fables Cause Problems and Fix Nothing"</p>
+    <aside class="notes">
+      <p><strong>[0:20 · ~40s]</strong> Before we start, let me be clear about what I want from tonight.</p>
+      <p>This is not a talk of inspirational lessons. We hear stories, we feel inspired, and on Monday nothing changes. I don't want you to leave thinking "that guy's projects went well". I want you to leave with something you can apply.</p>
+      <p>So my goal is simple. Think twice before you accept an AI project. Think twice before you commit to a number. And think twice before you say "this is easy, I can do it with AI".</p>
+      <p>Everything I show tonight is there to help you with those three moments.</p>
+      <p>(Reference at the bottom: Jeffrey Pfeffer makes this exact point in <em>Leadership BS</em>. Inspiration and fables fix nothing.)</p>
+    </aside>
+  </section>
+
+  <section class="slide hook" data-title="Hook: raise your hand">
+    <div class="hand"><span class="n">1</span><span>Who has built an AI product in a weekend?</span></div>
+    <div class="hand"><span class="n">2</span><span>Who has one in production, with a business metric attached?</span></div>
+    <aside class="notes">
+      <p><strong>[1:00 · ~30s]</strong> Ask question 1 and wait. Most hands go up. Ask question 2. Far fewer hands.</p>
+      <p>"That gap, between 'we built something cool' and 'it's in production and we can prove it creates value', is where most GenAI projects die. Tonight is about crossing that gap, and then crossing it faster."</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-title="The staircase">
+    <span class="tag">The journey</span>
+    <h2>Four steps of GenAI maturity</h2>
+    <div class="stairs">
+      <div class="step"><span class="num">01 · DEMO</span><h3>Prototype</h3><p>"This looks useful."</p></div>
+      <div class="step"><span class="num">02 · VALUE</span><h3>Prove impact</h3><p>"This creates measurable value."</p></div>
+      <div class="step"><span class="num">03 · RELIABILITY</span><h3>Production</h3><p>"It keeps creating value, every day."</p></div>
+      <div class="step"><span class="num">04 · SPEED</span><h3>Agentic engineering</h3><p>"We deliver it faster, without losing quality."</p></div>
+    </div>
+    <aside class="notes">
+      <p><strong>[1:30 · ~20s]</strong> This is the map for the next 20 minutes. Four steps. Most teams get stuck between step one and step two.</p>
+      <p>Each colour stays with its section, so you'll always know where we are.</p>
+    </aside>
+  </section>
+
+  <!-- ============ 1. THE PROTOTYPE TRAP ============ -->
+
+  <section class="slide" data-section="demo" data-title="Demos are cheap">
+    <span class="tag">1 · The prototype trap</span>
+    <h2>Impressive demos are easy.<br>Production value is not.</h2>
+    <div class="cols cols-2 needs" style="flex: none;">
+      <div>
+        <h3>A demo needs</h3>
+        <div class="pill-list">
+          <span class="pill">An API key</span>
+          <span class="pill">A prompt</span>
+          <span class="pill">A nice UI</span>
+          <span class="pill">Five hand-picked examples</span>
+        </div>
+      </div>
+      <div>
+        <h3>Production needs</h3>
+        <div class="pill-list">
+          <span class="pill hot">Edge cases</span>
+          <span class="pill hot">Latency &amp; cost</span>
+          <span class="pill hot">Security &amp; privacy</span>
+          <span class="pill hot">Evaluation</span>
+          <span class="pill hot">Monitoring</span>
+          <span class="pill hot">User trust</span>
+        </div>
+        <p class="pill-group-label">And the people and process to get there</p>
+        <div class="pill-list">
+          <span class="pill people">A real development lifecycle</span>
+          <span class="pill people">The right engineers</span>
+          <span class="pill people">The right leader</span>
+          <span class="pill people">A team set up to succeed</span>
+        </div>
+        <p class="pill-group-label">And proof it is worth it</p>
+        <div class="pill-list">
+          <span class="pill value">A baseline</span>
+          <span class="pill value">The right impact metric</span>
+        </div>
+      </div>
+    </div>
+    <div class="effort">
+      <p class="effort-label">The 80% illusion</p>
+      <div class="effort-bar">
+        <div class="demo">Demo</div>
+        <div class="prod">Everything it takes to make it real</div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p><strong>[1:50 · ~1m10s]</strong> GenAI changed the economics of the prototype. One afternoon, one API call, and you have something that impresses a room.</p>
+      <p>The trap is that the demo feels 80% done. In reality it's the visible 20%. The rest is technical (edge cases, latency, cost, privacy, monitoring), but it's also people and process.</p>
+      <p>Production needs a proper development lifecycle. It needs the right engineers, and the right leader to unblock them and push the team forward. A demo needs none of that. That's why it's so easy, and why it's so misleading.</p>
+      <p>And the one teams skip most: measuring the right impact. If all we do is put tech around the model, we have a better demo, not a product. Production needs a baseline, the right metric, and a clear link to a business goal. That's section two.</p>
+    </aside>
+  </section>
+
+  <section class="slide purgatory" data-section="demo" data-title="Pilot purgatory">
+    <span class="tag">1 · The prototype trap</span>
+    <h2>The result: pilot purgatory</h2>
+    <p class="sub">Endless pilots. Nothing in production.</p>
+    <div class="pill-list">
+      <span class="pill">No clear owner</span>
+      <span class="pill">No baseline</span>
+      <span class="pill">No evals</span>
+      <span class="pill">Surprise costs at scale</span>
+      <span class="pill">Risk review too late</span>
+    </div>
+    <aside class="notes">
+      <p><strong>[3:00 · ~25s]</strong> Keep this light. Don't go through the list one by one.</p>
+      <p>"You've all seen some of these. Most of them come from one root cause: nobody defined what value meant before building. That's the next section."</p>
+    </aside>
+  </section>
+
+  <!-- ============ 2. PROVE THE IMPACT ============ -->
+
+  <section class="slide" data-section="value" data-title="Start from the decision">
+    <span class="tag">2 · Prove the impact</span>
+    <h2>Start from the decision, not the model</h2>
+    <div class="stat-strip">
+      <div><span class="big">~95%</span><p>of enterprise GenAI pilots show no measurable P&amp;L impact.<a class="src" href="https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/">MIT NANDA, <em>The GenAI Divide</em>, 2025</a></p></div>
+      <div><span class="big">#1</span><p>root cause of AI project failure: the wrong problem, so models optimise the wrong metric.<a class="src" href="https://www.rand.org/pubs/research_reports/RRA2680-1.html">RAND, <em>Root Causes of Failure for AI Projects</em>, 2024</a></p></div>
+    </div>
+    <div class="cols cols-2 decision-cols">
+      <ol class="questions">
+        <li>What decision or process changes if this works?<small>If nothing changes, there's no value to measure.</small></li>
+        <li>What does it cost today?<small>The baseline: time, errors, conversion, cost per task.</small></li>
+        <li>What has to move, and by how much?<small>How much speed, revenue or cost are we actually winning?</small></li>
+        <li>Which OKR does it serve?<small>If it isn't tied to a company objective, it won't survive prioritisation.</small></li>
+      </ol>
+      <div class="layers">
+        <div class="layer l0"><span class="lbl">Company OKRs</span><p>The objective this project exists to move</p></div>
+        <div class="layer l1"><span class="lbl">Business</span><p>Revenue · cost · time · risk</p></div>
+        <div class="layer l2"><span class="lbl">Product</span><p>Task completion · acceptance · escalations</p></div>
+        <div class="layer l3"><span class="lbl">System</span><p>Accuracy · latency · cost per call</p></div>
+        <p class="caption">Each layer must explain the one above it.</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p><strong>[3:25 · ~1m10s]</strong> First, the numbers. MIT's 2025 study found that about 95% of enterprise GenAI pilots show no measurable P&amp;L impact. And RAND's 2024 study found the number one root cause of AI project failure is misunderstanding the problem, so the model optimises the wrong metric. Not the model. The problem definition.</p>
+      <p>Researchers love the bottom layer: accuracy, F1, faithfulness. Necessary, but nobody signs a budget for F1.</p>
+      <p>Start at the top. Which decision or process changes? What does it cost today? That's your baseline. Then: how much has to move, and how much speed, revenue or cost are we actually winning?</p>
+      <p>And the question teams forget: which company OKR does this serve? If you can't connect it to an objective leadership already cares about, it loses every prioritisation fight.</p>
+      <p>Transition: "Let me tell you what happens when you skip this. It happened to me."</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="value" data-title="Story 1: the wrong finish line">
+    <span class="tag">2 · Prove the impact · Story 1: the wrong finish line</span>
+    <h2>Six months, four people, no release</h2>
+    <div class="cols cols-2">
+      <ul class="facts">
+        <li>Before GenAI: data science, transformers, deep learning.</li>
+        <li>The goal: match candidates' CVs to the right jobs.</li>
+        <li>Projects ran 6+ months with a team of four.</li>
+        <li><strong>Solid work. Never released.</strong></li>
+      </ul>
+      <div class="measure">
+        <div class="card"><span class="lbl">What we measured</span><h3>How good the match was</h3><p>Model metrics on the match itself.</p></div>
+        <div class="card accented"><span class="lbl">What we never defined</span><h3>What a good match was worth</h3><p>To the recruiter, the customer and the business.</p></div>
+      </div>
+    </div>
+    <div class="callout">Not bad work. The wrong finish line.</div>
+    <aside class="notes">
+      <p><strong>[4:35 · ~1m10s]</strong> A few years ago at SEEK. To be fair to them: SEEK has always been strong in AI and is a very mature AI organisation today. This was before GenAI. We used data science, transformers and deep learning for specific problems, so projects took much longer than they do now.</p>
+      <p>There were plenty of ideas to improve prototypes, and one area was matching candidates' CVs to jobs. A typical project: more than six months, a team of four.</p>
+      <p>And sometimes, after six months, it never got released. Not because we did a bad job. The models were good. When the project started, we never set a metric that reflected what we actually wanted to achieve once a candidate was matched.</p>
+      <p>That hurts more than the roadmap. When you work six months and nothing ships, careers stall too. People need releases to grow.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="value" data-title="The questions we should have asked">
+    <span class="tag">2 · Prove the impact · Story 1: the wrong finish line</span>
+    <h2>The questions we should have asked first</h2>
+    <div class="cols cols-3" style="flex: none;">
+      <div class="card q-card"><span class="kicker">Time</span><h3>How much time does a recruiter save per match?</h3><p>Value in a unit the business already tracks.</p></div>
+      <div class="card q-card"><span class="kicker">Demand</span><h3>Which industries want this most?</h3><p>Where adoption and impact come first.</p></div>
+      <div class="card q-card accented"><span class="kicker">Fit</span><h3>Which industries don't benefit at all?</h3><p>Some have so many candidates they don't need matching.</p></div>
+    </div>
+    <div class="promise">
+      <span class="kicker">And the promises</span>
+      <p>"We'll increase applications by 10%." Or was it 5%? <strong>Do we really get 10%? How do we know? Can we commit to it this quarter, and does that metric represent what the team will actually deliver?</strong></p>
+    </div>
+    <div class="callout" style="margin-top: 24px;">Model metrics tell you it works. Business metrics tell you it matters.</div>
+    <aside class="notes">
+      <p><strong>[5:45 · ~1m]</strong> Looking back, these are the questions we should have answered on day one.</p>
+      <ul>
+        <li>How much time does a recruiter save when we match a CV to a job? That's the value, in a unit the business understands.</li>
+        <li>Which industries are most keen to use it? That tells you where to launch.</li>
+        <li>And the one nobody asks: which industries don't benefit at all? Some get so many candidates that better matching adds nothing. Knowing that early saves months.</li>
+      </ul>
+      <p>And the promises. People would say "this will increase applications by 10%", or 5%. Do we really get 10%? How do we know? Can we commit to that number this quarter, and does it represent what the team will actually deliver? Nobody could answer that.</p>
+      <p>None of these is a model question. All of them decide whether the model ever ships.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="value" data-title="Story 2: test the theory first">
+    <span class="tag">2 · Prove the impact · Story 2: doing it right</span>
+    <h2>Test the theory before building the model</h2>
+    <div class="cols cols-2">
+      <ol class="questions">
+        <li>The premise<small>Recommend items before checkout: a better experience, and bigger orders.</small></li>
+        <li>The test<small>Compare restaurants that already had great <em>manual</em> recommendations with restaurants that had none.</small></li>
+        <li>The insight<small>The human version is the prototype. If manual recommendations move the number, AI can replicate them at scale.</small></li>
+      </ol>
+      <div class="stat-tile">
+        <span class="stat">40%</span>
+        <p class="stat-label">of menu items had no recommendations at all</p>
+        <ul class="reasons">
+          <li>Restaurants didn't want to set them up</li>
+          <li>Online menus weren't kept fresh</li>
+          <li>Doing it by hand takes too long</li>
+        </ul>
+      </div>
+    </div>
+    <aside class="notes">
+      <p><strong>[6:45 · ~1m15s]</strong> After SEEK I went to Mr Yum, and this time I knew what mistake not to make.</p>
+      <p>We wanted a recommendation system that suggests items before checkout. The premise: better usability, and people buy more. But before building any model, my team tested whether that theory was true.</p>
+      <p>How? We compared restaurants that already had really good recommendations set up manually with restaurants that didn't. The manual version is the prototype. Not perfectly accurate, but if humans doing it by hand moves the number, an AI replicating the human can too.</p>
+      <p>The first finding: 40% of menu items had no recommendation at all. Restaurants didn't want to set them up, didn't keep their online menus fresh, and doing it manually takes too much time.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="value" data-title="Story 2: what the data showed">
+    <span class="tag">2 · Prove the impact · Story 2: doing it right</span>
+    <h2>The data showed where the value was</h2>
+    <p class="tiles-caption">Cart spend compared with restaurants that had no recommendations</p>
+    <div class="cols cols-3 tiles">
+      <div class="card tile accented"><span class="kicker">Full recommendations</span><span class="stat">+20–30%</span><p>higher cart spend</p></div>
+      <div class="card tile"><span class="kicker">About half covered</span><span class="stat">&lt;5%</span><p>barely moves</p></div>
+      <div class="card tile"><span class="kicker">No recommendations</span><span class="stat">Baseline</span><p>a lost opportunity on every order</p></div>
+    </div>
+    <div class="cols cols-3 angles">
+      <div class="angle"><h3>Usability</h3><p>An easier way to find what to add.</p></div>
+      <div class="angle"><h3>Automation</h3><p>Restaurants get recommendations without the manual work.</p></div>
+      <div class="angle strong"><h3>Lost opportunity</h3><p>40% of items with nothing to recommend: the biggest impact.</p></div>
+    </div>
+    <aside class="notes">
+      <p><strong>[8:00 · ~1m15s]</strong> Then we compared spend. Restaurants with full recommendations showed roughly 20 to 30% higher cart spend than restaurants with none. Restaurants with about half their items covered didn't even reach 5%.</p>
+      <p>So we saw three kinds of value. Usability: a nicer way to discover items. Automation: the restaurant gets recommendations without doing the work. But the biggest one was the lost opportunity: 40% of items with no recommendation means money left on the table on every order.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="value" data-title="Story 2: one metric, tied to the OKR">
+    <span class="tag">2 · Prove the impact · Story 2: doing it right</span>
+    <h2>One primary metric, tied to the OKR</h2>
+    <div class="cols cols-2">
+      <div class="metric-col">
+        <div class="card accented"><span class="kicker">Primary metric</span><h3>Cross-sell spend per order</h3></div>
+        <div class="card"><span class="kicker muted-k">Secondary</span><p>Time saved for restaurants · automation</p></div>
+        <p class="why"><strong>Why only one?</strong> Marry too many metrics and nothing is objective. One metric explains how you support the OKR.</p>
+      </div>
+      <ol class="timeline">
+        <li><span class="when">3 months</span><strong>Build</strong></li>
+        <li><span class="when">Beta · 15 restaurants</span><strong>+10% cross-sell</strong></li>
+        <li><span class="when">Full rollout · 2 months later</span><strong class="big-result">+23–24% cross-sell</strong></li>
+        <li class="okr"><span class="when">Company OKR</span><strong>More spend per shopping cart</strong></li>
+      </ol>
+    </div>
+    <aside class="notes">
+      <p><strong>[9:15 · ~1m15s]</strong> So the metric chose itself: increase cross-sell spend per order. That was our primary success metric. Secondary ones existed (restaurants spending less time, more automation), but we committed to one.</p>
+      <p>Why not marry a lot of metrics? Because then nothing is objective and it's hard to track. You want one main metric that explains how you support the OKR and the company goal.</p>
+      <p>Results: about three months to build, then a beta with 15 restaurants. We saw a 10% increase and released to everyone. Two months later, cross-sell was up around 23 to 24%.</p>
+      <p>And the company OKR was to increase what people spend in the shopping cart. So we could say, with evidence, that we moved it by around 24%. That's the difference from SEEK: same kind of team, but we defined the finish line first.</p>
+    </aside>
+  </section>
+
+  <!-- ============ 3. BUILD FOR PRODUCTION ============ -->
+
+  <section class="slide golden" data-section="reliability" data-title="The golden rule">
+    <p class="rule-label">3 · Build for production · My golden rule</p>
+    <blockquote>An AI system is only as good as the <em>software engineering</em> around it.</blockquote>
+    <p class="sub">We overestimate the model and underestimate the software.</p>
+    <aside class="notes">
+      <p><strong>[10:30 · ~40s]</strong> Pause on this one. It's the core of the talk.</p>
+      <p>Every AI idea has to be held to the same engineering bar as any other software: tests, reviews, monitoring, ownership. Data science and ML are often treated as special, so they skip that bar, and that's exactly why they break in production.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="reliability" data-title="The model is the small box">
+    <span class="tag">3 · Build for production</span>
+    <h2>The model is the small box</h2>
+    <div class="cols cols-2-wide-left">
+      <div style="display: flex; flex-direction: column; min-height: 0;">
+        <div class="debt-grid">
+          <div>Configuration</div>
+          <div class="wide">Data &amp; retrieval pipelines</div>
+          <div>Access &amp; security</div>
+          <div>Evaluation</div>
+          <div class="wide core-cell"><span class="core">Prompt + model call</span></div>
+          <div>Serving infrastructure</div>
+          <div>Guardrails</div>
+          <div>Monitoring &amp; tracing</div>
+          <div>Cost management</div>
+          <div>Feedback loops</div>
+        </div>
+        <p class="cite">Adapted for GenAI from Sculley et al., "Hidden Technical Debt in Machine Learning Systems", NeurIPS 2015.</p>
+      </div>
+      <div class="box-right">
+        <ul class="facts compact">
+          <li>With GenAI the box got <strong>smaller</strong>: often one API call.</li>
+          <li>Everything around it is <strong>software</strong>, and it decides production.</li>
+        </ul>
+        <div class="mini-stat"><span class="big">48%</span><p>of AI projects make it into production. Prototype to production takes ~8 months.<a class="src" href="https://www.gartner.com/en/newsroom/press-releases/2024-05-07-gartner-survey-finds-generative-ai-is-now-the-most-frequently-deployed-ai-solution-in-organizations">Gartner AI survey, May 2024</a></p></div>
+        <div class="mini-stat"><span class="big">80%+</span><p>of AI projects fail, twice the rate of non-AI IT projects. Inadequate infrastructure is one of five root causes.<a class="src" href="https://www.rand.org/pubs/research_reports/RRA2680-1.html">RAND, 2024</a></p></div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p><strong>[11:10 · ~50s]</strong> Many of you will know this figure from the Sculley paper. The model code is the small box in the middle. Everything else is configuration, data pipelines, serving and monitoring.</p>
+      <p>And the numbers back it up. Gartner's 2024 survey: only 48% of AI projects make it into production, and it takes about 8 months to get from prototype to production. RAND estimates more than 80% of AI projects fail, twice the rate of normal IT projects, and lack of infrastructure to deploy models is one of the root causes.</p>
+      <p>GenAI made that box even smaller. The model is now an API call. So almost all of the work, and all of the risk, sits in the surrounding software. If your team is all model and no software, you'll stay in demo land.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="reliability" data-title="The AI lifecycle: then and now">
+    <span class="tag">3 · Build for production</span>
+    <h2>The AI lifecycle: then and now</h2>
+
+    <div class="era-row then">
+      <div class="era-label"><strong>Then</strong><span>Data science era</span></div>
+      <div class="stages">
+        <span>Business metrics</span><span>Data &amp; orchestration</span><span>Experimentation</span><span>Model &amp; registry</span><span>Staging</span><span>Production &amp; monitoring</span>
+      </div>
+    </div>
+    <div class="duration then"><div class="bar" style="width: 100%;">4+ months to production</div></div>
+
+    <div class="era-row now">
+      <div class="era-label"><strong>Now</strong><span>GenAI + agentic engineering</span></div>
+      <div class="stages">
+        <span>Business metrics</span><span class="fast">Demo in days</span><span class="fast">Staging, early</span><span>Measure vs. the metric</span><span>Production</span><span>Monitoring</span>
+      </div>
+    </div>
+    <div class="duration now"><div class="bar" style="width: 25%;">~1 month to production</div></div>
+
+    <div class="callout" style="margin-top: 28px;">What changed is speed: we find out much earlier whether we're on track for the business goal.</div>
+    <aside class="notes">
+      <p><strong>[12:00 · ~1m30s]</strong> The lifecycle has changed a lot since ChatGPT came out.</p>
+      <p>In the data science era: we defined the metrics to decide whether the project was worth it, then built the data pipelines and orchestration, experimented, trained a model, registered it, moved to staging, then production, then monitoring. Each step took a long time. Months before anyone saw real results. That's the SEEK story.</p>
+      <p>What changed is speed. Faster demos, faster code. So we get to staging much earlier and see, with real data, whether we're on track for the business metric.</p>
+      <p>Let's be realistic though: it's not weeks. We still do staging, monitoring, everything. What used to take four months or more now takes about one month. That's what I've lived over the last two years.</p>
+      <p>Transition: "A big part of that speed comes from how we build now."</p>
+    </aside>
+  </section>
+
+  <!-- ============ 4. AGENTIC ENGINEERING ============ -->
+
+  <section class="slide" data-section="speed" data-title="The engineer's role has changed">
+    <span class="tag">4 · Scale the engineering team</span>
+    <h2>The engineer's role has already changed</h2>
+    <div class="shift">
+      <div class="era-card past"><span class="k">Yesterday</span><strong>Writing the code</strong><ul><li>Features &amp; boilerplate</li><li>Tests &amp; refactors</li><li>Documentation</li></ul><em>Agents do this now</em></div>
+      <div class="shift-arrow">➜</div>
+      <div class="era-card now"><span class="k">Today</span><strong>Owning the decisions</strong><ul><li>Architecture</li><li>Flows &amp; boundaries</li><li>Keeping it simple, not over-engineered</li><li>Accountability for what ships</li></ul></div>
+      <div class="shift-arrow">➜</div>
+      <div class="era-card next"><span class="k">Next</span><strong>Still shifting</strong><ul><li>Less typing, more judgement</li><li>More direction, less execution</li></ul></div>
+    </div>
+    <div class="constant">
+      <span class="k">The one constant</span>
+      <p>Models change every year. In 12 years of AI, one thing never has: <strong>the human in the loop.</strong></p>
+    </div>
+    <aside class="notes">
+      <p><strong>[13:30 · ~45s]</strong> The engineer's role has already changed. Writing features, boilerplate, tests and docs: agents do most of that now.</p>
+      <p>Today the job is owning the decisions: the architecture, the flows and boundaries, keeping things simple instead of over-engineered, and being accountable for what ships. We're not correcting code anymore. We're correcting decisions.</p>
+      <p>And it will keep shifting: less typing, more judgement.</p>
+      <p>But here's the thing. Models change every year. In my 12 years in AI, one thing has never changed: the human in the loop. That's what gives AI its direction. So let me show you how we keep it there.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="speed" data-title="Agentic engineering framework">
+    <span class="tag">4 · How we build with coding agents</span>
+    <h2>Agentic engineering framework</h2>
+    <div class="hl">
+      <div class="hl-band eng" style="grid-row: 1;"></div>
+      <div class="hl-band agt" style="grid-row: 2;"></div>
+      <div class="hl-lane eng" style="grid-row: 1;">Engineer</div>
+      <div class="hl-lane agt" style="grid-row: 2;">Agent</div>
+      <div class="hl-lane why" style="grid-row: 3;">Why</div>
+
+      <div class="hl-step eng" style="grid-row: 1; grid-column: 2;"><span class="n">1</span><strong>Set the direction</strong><p>A task, a Jira ticket or a bug fix</p></div>
+      <div class="hl-step agt" style="grid-row: 2; grid-column: 3;"><span class="n">2</span><strong>Read &amp; plan</strong><p>Code, rules &amp; ADRs → phased plan + diagram</p></div>
+      <div class="hl-step eng gate" style="grid-row: 1; grid-column: 4;"><span class="n">3</span><strong>Approve the plan</strong><p>No code before "go"</p></div>
+      <div class="hl-step agt" style="grid-row: 2; grid-column: 5;"><span class="n">4</span><strong>Build in stages</strong><p>Proof (tests) at every stage</p></div>
+      <div class="hl-step eng" style="grid-row: 1; grid-column: 6;"><span class="n">5</span><strong>Review &amp; merge</strong><p>Peer review + automated checks</p></div>
+
+      <div class="hl-why" style="grid-column: 2;"><p>Left alone, agents reverse decisions and invent details.</p><a class="src" href="https://www.anthropic.com/research/project-vend-1">Anthropic, Project Vend, 2025</a></div>
+      <div class="hl-why" style="grid-column: 3;"><p>Doing too much at once leaves a mess: one task, progress written down.</p><a class="src" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic, long-running agents, 2025</a></div>
+      <div class="hl-why" style="grid-column: 4;"><p><b>~39% worse</b> in long multi-turn work. An early wrong turn rarely recovers.</p><a class="src" href="https://arxiv.org/abs/2505.06120">Laban et al., 2025</a></div>
+      <div class="hl-why" style="grid-column: 5;"><p>Long runs drift, and agents say "done" before it is.</p><a class="src" href="https://arxiv.org/abs/2502.15840">Vending-Bench, 2025</a><a class="src" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Anthropic, 2025</a></div>
+      <div class="hl-why" style="grid-column: 6;"><p>Anything with real consequences needs human approval.</p><a class="src" href="https://www.anthropic.com/research/agentic-misalignment">Anthropic, agentic misalignment, 2025</a></div>
+    </div>
+    <p class="ref hl-ref">Follows Anthropic's own guidance: <a href="https://www.anthropic.com/engineering/claude-code-best-practices">Best practices for Claude Code</a> (explore, plan, code, commit) · <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective harnesses for long-running agents</a></p>
+    <aside class="notes">
+      <p><strong>[14:15 · ~2m]</strong> This is our agentic engineering framework. Two lanes: what the engineer does and what the agent does. And under each step, why we do it, backed by research.</p>
+      <ul>
+        <li><strong>1. Set the direction (engineer).</strong> A task, a Jira ticket or a bug fix. Decisions get written down, not left in a chat, because in Anthropic's Project Vend, Claude running a small shop gave stock away, reversed decisions and invented details.</li>
+        <li><strong>2. Read and plan (agent).</strong> It reads the code, rules and ADRs, then writes a phased plan with a diagram. Anthropic found agents try to do too much at once and leave a mess, so: one task at a time, progress written down.</li>
+        <li><strong>3. Approve the plan (engineer).</strong> No code before "go". Laban et al. found leading models are about 39% worse in long multi-turn work, and once they take a wrong turn they don't recover. The plan is where a mistake is cheapest.</li>
+        <li><strong>4. Build in stages (agent).</strong> Proof at every stage. In Vending-Bench, every model had runs that went off the rails, and Anthropic found agents declare success too early and skip real testing.</li>
+        <li><strong>5. Review and merge (engineer).</strong> Peer review plus automated checks. Anthropic advises human approval for anything with real consequences.</li>
+      </ul>
+      <p>So not every step is agentic, by design. And this isn't slowing us down for no reason: it's what Anthropic itself recommends. Explore, plan, code, commit.</p>
+      <p>Q&amp;A backup: in Anthropic's agentic misalignment study, Claude Opus 4 took the harmful action 55.1% of the time when it believed the scenario was real, vs 6.5% when it believed it was a test (500 samples). Same model, very different behaviour when stakes feel real: the reason for human approval on irreversible actions.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="speed" data-title="Plan before code">
+    <span class="tag">4 · Scale the engineering team</span>
+    <h2>Plan before code: the development plan</h2>
+    <div class="cols cols-2-wide-left">
+<div class="plan-file"><span class="fname">DEVELOPMENT_PLAN.md</span><span class="h"># Development Plan for invoice-extraction</span>
+
+<span class="h">## Project Purpose and Goals</span>
+<span class="h">## Hard Requirements</span>
+<span class="hl"><span class="h">## Unknowns and Assumptions</span></span>
+<span class="h">## Architecture Considerations</span>
+
+<span class="h">## Development Phases</span>
+<span class="hl"><span class="h">### Phase 1: Context Gathering and Project Review</span></span>
+<span class="c">- [ ]</span> Read all relevant project files
+<span class="c">- [ ]</span> Review existing tests and expected behaviour
+<span class="dim">### Phase 2–3: Design validation, preparation …</span>
+<span class="h">### Phase 4: Implementation Tasks</span>
+<span class="c">- [ ]</span> Ensure implementation follows project conventions
+<span class="h">### Phase 5: Testing and Validation</span>
+<span class="hl"><span class="h">## QA Checklist</span></span>
+<span class="h">## Out of Scope</span>
+<span class="hl"><span class="h">## Stop Point</span></span>
+Stop after creating this plan and wait for user review.</div>
+      <ul class="plan-points">
+        <li><strong>Context first</strong><span>The agent reads code, docs and tests before planning.</span></li>
+        <li><strong>Extend, don't rewrite</strong><span>Reuse existing patterns. Architecture is preserved by default.</span></li>
+        <li><strong>Unknowns made explicit</strong><span>No silent guessing to fill the gaps.</span></li>
+        <li><strong>Checkable phases &amp; QA gates</strong><span>Progress you can verify, not "trust me".</span></li>
+        <li><strong>Stop point</strong><span>A human approves before any code is written.</span></li>
+        <li class="repo"><strong>Use the skill</strong><a href="https://github.com/gilbertofp16/gen_ai_repo/tree/main/Claude/skills/development-planner">github.com/gilbertofp16/gen_ai_repo<br>→ Claude/skills/development-planner</a></li>
+      </ul>
+    </div>
+    <aside class="notes">
+      <p><strong>[16:15 · ~1m]</strong> I packaged this as a reusable agent skill, the development planner. When an agent gets a non-trivial task, it has to produce this file first.</p>
+      <ul>
+        <li>It starts with context gathering: read the code, docs and tests. No planning in a vacuum.</li>
+        <li>It extends existing patterns instead of rewriting them. That's how you keep architecture intact when agents write a lot of code.</li>
+        <li>Unknowns and assumptions are written down, so the agent doesn't quietly invent requirements.</li>
+        <li>Phases are checklists with a QA gate, so verification is objective.</li>
+        <li>And it stops. A human reviews the plan before a single line is written. That's where accountability sits.</li>
+      </ul>
+      <p>Reviewing a one-page plan is far cheaper than reviewing a 2,000-line diff built on the wrong assumption.</p>
+      <p>The skill is open on my GitHub. The link is on the slide if you want to use it.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="speed" data-title="See the plan before approving it">
+    <span class="tag">4 · Scale the engineering team</span>
+    <h2>See the plan before you approve it</h2>
+    <div class="cols diagram-cols">
+<div class="plan-file mermaid-src"><span class="fname">plan-diagram.mmd</span><span class="c">flowchart</span> LR
+  A[Upload API] --&gt; B[Extraction service]:::changed
+  B --&gt; C[LLM extraction]:::new
+  C --&gt; D{Schema validation}:::new
+  D -- valid --&gt; E[(Invoices DB)]
+  D -- invalid --&gt; F[Human review queue]:::new
+  F --&gt; E
+
+<span class="dim">%% Phase 1: D · Phase 2: B, C · Phase 3: F</span></div>
+      <div class="plan-diagram">
+        <svg viewBox="0 0 640 380" role="img" aria-label="Proposed change: Upload API to a changed extraction service, a new LLM extraction step and new schema validation; valid results go to the invoices database, invalid ones to a new human review queue">
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" style="fill: var(--muted);"/>
+            </marker>
+          </defs>
+          <g class="edges">
+            <line x1="170" y1="60" x2="240" y2="60" marker-end="url(#arrow)"/>
+            <line x1="410" y1="60" x2="465" y2="60" marker-end="url(#arrow)"/>
+            <line x1="545" y1="85" x2="545" y2="150" marker-end="url(#arrow)"/>
+            <line x1="545" y1="205" x2="545" y2="285" marker-end="url(#arrow)"/>
+            <polyline points="465,178 325,178 325,280" marker-end="url(#arrow)"/>
+            <line x1="410" y1="312" x2="465" y2="312" marker-end="url(#arrow)"/>
+          </g>
+          <text class="edge-label" x="555" y="252">valid</text>
+          <text class="edge-label" x="335" y="230">invalid</text>
+
+          <g class="node unchanged"><rect x="20" y="35" width="150" height="50" rx="10"/><text x="95" y="60">Upload API</text></g>
+          <g class="node changed"><rect x="240" y="35" width="170" height="50" rx="10"/><text x="325" y="60">Extraction service</text></g>
+          <g class="node new"><rect x="465" y="35" width="160" height="50" rx="10"/><text x="545" y="60">LLM extraction</text></g>
+          <g class="node new"><rect x="465" y="152" width="160" height="52" rx="26"/><text x="545" y="178">Schema validation</text></g>
+          <g class="node unchanged"><rect x="465" y="287" width="160" height="50" rx="10"/><text x="545" y="312">Invoices DB</text></g>
+          <g class="node new"><rect x="240" y="287" width="170" height="50" rx="10"/><text x="325" y="312">Human review queue</text></g>
+
+          <g class="phase"><circle cx="404" cy="35" r="13"/><text x="404" y="35">P2</text></g>
+          <g class="phase"><circle cx="619" cy="35" r="13"/><text x="619" y="35">P2</text></g>
+          <g class="phase"><circle cx="619" cy="152" r="13"/><text x="619" y="152">P1</text></g>
+          <g class="phase"><circle cx="404" cy="287" r="13"/><text x="404" y="287">P3</text></g>
+        </svg>
+        <div class="legend">
+          <span><i class="sw new"></i>New</span>
+          <span><i class="sw changed"></i>Changed</span>
+          <span><i class="sw unchanged"></i>Unchanged</span>
+          <span><i class="sw phase-sw">P1</i>Build phase</span>
+        </div>
+      </div>
+    </div>
+    <div class="callout">Approve the picture before the code. Reviewers know what to expect, and the PR gets reviewed faster.</div>
+    <aside class="notes">
+      <p><strong>[17:15 · ~1m10s]</strong> Before I approve a plan, I ask the agent to draw it. Usually Mermaid, sometimes draw.io.</p>
+      <p>In ten seconds I can see what's new, what changes, what stays the same, and in which phase each piece gets built. If the architecture is wrong, or it's over-engineered, I catch it here, before a single line of code.</p>
+      <p>It also helps the team: whoever reviews the PR has already seen the picture, so they know what to expect and review much faster.</p>
+    </aside>
+  </section>
+
+  <section class="slide" data-section="speed" data-title="Run the plan, stage by stage">
+    <span class="tag">4 · From plan to done</span>
+    <h2>Run the plan, stage by stage</h2>
+    <div class="run">
+      <div class="run-step"><span class="n">1</span><strong>Build one stage</strong><p>Code + unit tests for the next phase only.</p></div>
+      <div class="run-arrow">➜</div>
+      <div class="run-step"><span class="n">2</span><strong>Prove it</strong><p>Unit tests pass, manual testing when needed. Evidence, not "done".</p></div>
+      <div class="run-arrow">➜</div>
+      <div class="run-step gate"><span class="n">3</span><strong>Approve &amp; ship</strong><p>The PR carries the plan and the diagram, so review is fast. Normal CI/CD runs.</p></div>
+      <div class="run-loop-mini"><span>↺</span> Loop 1 → 2 until the task, ticket or bug fix is done</div>
+    </div>
+    <div class="run-loop"><strong>Engineering hasn't changed.</strong> CI/CD is still there. We just execute faster, so people review and decide instead of writing every line.</div>
+    <aside class="notes">
+      <p><strong>[18:30 · ~35s]</strong> Once the plan is approved, this is how we run it to the end.</p>
+      <p>One: build one stage, the code and its unit tests, only for the next phase. Two: prove it. Unit tests pass, and we do manual testing when it's needed. That's a loop: build, prove, build, prove, until the task, the ticket or the bug fix is done.</p>
+      <p>Three: approve and ship. The PR carries the plan and the diagram, so the human review is much faster. And our normal CI/CD runs, exactly as before.</p>
+      <p>We're not changing how engineering is done. We're executing it faster and more automatically, so people can focus on reviewing and deciding instead of writing every line.</p>
+    </aside>
+  </section>
+
+  <!-- ============ 5. CLOSE ============ -->
+
+  <section class="slide" data-title="Close: takeaways">
+    <span class="tag">Takeaways</span>
+    <h2>What to take home</h2>
+    <div class="take-grid">
+      <div class="take value"><span class="num">1</span><div><em>Before you accept a project</em><strong>Define the metric of success.</strong></div><span class="d">One primary metric, tied to an OKR.</span></div>
+      <div class="take value"><span class="num">2</span><div><em>Before you commit to a number</em><strong>Investigate first.</strong></div><span class="d">Test the theory with what exists today. That's how we found the 40%.</span></div>
+      <div class="take reliability"><span class="num">3</span><div><em>Before you skip a step</em><strong>The lifecycle hasn't changed. It got faster.</strong></div><span class="d">Same steps: metrics, staging, production, monitoring. ~1 month instead of 4+.</span></div>
+      <div class="take speed"><span class="num">4</span><div><em>Before you say "it's easy with AI"</em><strong>Own the decisions, not the code.</strong></div><span class="d">Architecture, flows and keeping it simple. That's the engineer's job now.</span></div>
+      <div class="take speed"><span class="num">5</span><div><em>When you build with agents</em><strong>Plan first, then build in proven stages.</strong></div><span class="d">Plan and diagram, human approval, tests at every stage. CI/CD unchanged.</span></div>
+    </div>
+    <aside class="notes">
+      <p><strong>[19:00 · ~45s]</strong> Remember the goal: think twice. Here's what to do at each of those moments.</p>
+      <ul>
+        <li>Before you accept a project: define the metric of success. One primary metric, tied to an OKR. That's the difference between my first story and my second.</li>
+        <li>Before you commit to a number: investigate first. Test the theory with what exists today. That's how we found the 40% before building anything.</li>
+        <li>Before you skip a step: the AI lifecycle hasn't changed, it just got faster. Same metrics, staging, production and monitoring, in about a month instead of four or more.</li>
+        <li>Before you say "it's easy with AI": remember the job has changed. Own the decisions, the architecture, the flows, keeping it simple. Not the code.</li>
+        <li>And when you build with agents: plan first, then build in proven stages. Plan and diagram, human approval, tests at every stage, and your normal CI/CD.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="slide qa" data-title="Questions">
+    <h1>Thank you</h1>
+    <p>Questions?</p>
+    <p style="margin-top: 40px; font-size: 20px;">Gilbert Pochet · github.com/gilbertofp16</p>
+    <aside class="notes">
+      <p><strong>[19:45]</strong> Open for Q&amp;A.</p>
+      <p>Likely questions:</p>
+      <ul>
+        <li>How do you build a golden dataset with no labelled data? Start with 50–100 real cases labelled by domain experts, then grow it from production failures.</li>
+        <li>Is LLM-as-judge reliable? Only once you've calibrated it against human labels, and you should re-check it regularly.</li>
+        <li>Which coding agent do you use? The workflow is tool-agnostic. The plan, rules and tests are what matter.</li>
+        <li>Doesn't planning slow you down? A one-page plan review costs minutes. Reviewing a wrong 2,000-line diff costs days.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <div class="progress"></div>
+</main>
+</div>
+
+<div class="notes-panel" aria-live="polite"></div>
+
+<div class="presenter-ui">
+  <div class="p-top">
+    <span class="p-timer">00:00</span>
+    <span class="p-meta"><span class="p-count"></span><button class="p-start" type="button">Start timer</button></span>
+  </div>
+  <div class="p-current">
+    <h4>Current slide</h4>
+    <div class="p-title"></div>
+    <div class="p-next"></div>
+  </div>
+  <div class="p-notes">
+    <h4>Speaker notes</h4>
+    <div class="p-notes-body"></div>
+  </div>
+</div>
+
+<script src="deck.js"></script>
+</body>
+</html>
