@@ -26,7 +26,8 @@
     </div>
     <div class="speaker">
       Gilbert Pochet
-      <span>Staff AI Engineer · Future Secure AI (FSAI)</span>
+      <span>Future Secure AI (FSAI)</span>
+      <span>Staff AI Engineer</span>
     </div>
     <aside class="notes">
       <p><strong>[0:00 · ~20s]</strong> Thanks everyone. I'm Gilbert. I've spent about 12 years across the Americas, Germany and Australia turning AI systems into real products, at places like SEEK, oOh!media and Mr Yum. Today I'm a Staff AI Engineer at Future Secure AI.</p>
@@ -313,38 +314,10 @@
     </aside>
   </section>
 
-  <section class="slide" data-section="reliability" data-title="The model is the small box">
-    <span class="tag">3 · Build for production</span>
-    <h2>The model is the small box</h2>
-    <div class="cols cols-2-wide-left">
-      <div style="display: flex; flex-direction: column; min-height: 0;">
-        <div class="debt-grid">
-          <div>Configuration</div>
-          <div class="wide">Data &amp; retrieval pipelines</div>
-          <div>Access &amp; security</div>
-          <div>Evaluation</div>
-          <div class="wide core-cell"><span class="core">Prompt + model call</span></div>
-          <div>Serving infrastructure</div>
-          <div>Guardrails</div>
-          <div>Monitoring &amp; tracing</div>
-          <div>Cost management</div>
-          <div>Feedback loops</div>
-        </div>
-        <p class="cite">Adapted for GenAI from Sculley et al., "Hidden Technical Debt in Machine Learning Systems", NeurIPS 2015.</p>
-      </div>
-      <div class="box-right">
-        <ul class="facts compact">
-          <li>With GenAI the box got <strong>smaller</strong>: often one API call.</li>
-          <li>Everything around it is <strong>software</strong>, and it decides production.</li>
-        </ul>
-        <div class="mini-stat"><span class="big">48%</span><p>of AI projects make it into production. Prototype to production takes ~8 months.<a class="src" href="https://www.gartner.com/en/newsroom/press-releases/2024-05-07-gartner-survey-finds-generative-ai-is-now-the-most-frequently-deployed-ai-solution-in-organizations">Gartner AI survey, May 2024</a></p></div>
-        <div class="mini-stat"><span class="big">80%+</span><p>of AI projects fail, twice the rate of non-AI IT projects. Inadequate infrastructure is one of five root causes.<a class="src" href="https://www.rand.org/pubs/research_reports/RRA2680-1.html">RAND, 2024</a></p></div>
-      </div>
-    </div>
+  <section class="slide divider" data-section="speed" data-title="Agentic engineering">
+    <h2>Agentic engineering</h2>
     <aside class="notes">
-      <p><strong>[11:10 · ~50s]</strong> Many of you will know this figure from the Sculley paper. The model code is the small box in the middle. Everything else is configuration, data pipelines, serving and monitoring.</p>
-      <p>And the numbers back it up. Gartner's 2024 survey: only 48% of AI projects make it into production, and it takes about 8 months to get from prototype to production. RAND estimates more than 80% of AI projects fail, twice the rate of normal IT projects, and lack of infrastructure to deploy models is one of the root causes.</p>
-      <p>GenAI made that box even smaller. The model is now an API call. So almost all of the work, and all of the risk, sits in the surrounding software. If your team is all model and no software, you'll stay in demo land.</p>
+      <p><strong>[11:10 · ~10s]</strong> Short pause. "So how do we apply that bar now that agents write a lot of the code? Agentic engineering."</p>
     </aside>
   </section>
 
@@ -370,7 +343,7 @@
 
     <div class="callout" style="margin-top: 28px;">What changed is speed: we find out much earlier whether we're on track for the business goal.</div>
     <aside class="notes">
-      <p><strong>[12:00 · ~1m30s]</strong> The lifecycle has changed a lot since ChatGPT came out.</p>
+      <p><strong>[11:20 · ~1m30s]</strong> The lifecycle has changed a lot since ChatGPT came out.</p>
       <p>In the data science era: we defined the metrics to decide whether the project was worth it, then built the data pipelines and orchestration, experimented, trained a model, registered it, moved to staging, then production, then monitoring. Each step took a long time. Months before anyone saw real results. That's the SEEK story.</p>
       <p>What changed is speed. Faster demos, faster code. So we get to staging much earlier and see, with real data, whether we're on track for the business metric.</p>
       <p>Let's be realistic though: it's not weeks. We still do staging, monitoring, everything. What used to take four months or more now takes about one month. That's what I've lived over the last two years.</p>
@@ -395,7 +368,7 @@
       <p>Models change every year. In 12 years of AI, one thing never has: <strong>the human in the loop.</strong></p>
     </div>
     <aside class="notes">
-      <p><strong>[13:30 · ~45s]</strong> The engineer's role has already changed. Writing features, boilerplate, tests and docs: agents do most of that now.</p>
+      <p><strong>[12:50 · ~45s]</strong> The engineer's role has already changed. Writing features, boilerplate, tests and docs: agents do most of that now.</p>
       <p>Today the job is owning the decisions: the architecture, the flows and boundaries, keeping things simple instead of over-engineered, and being accountable for what ships. We're not correcting code anymore. We're correcting decisions.</p>
       <p>And it will keep shifting: less typing, more judgement.</p>
       <p>But here's the thing. Models change every year. In my 12 years in AI, one thing has never changed: the human in the loop. That's what gives AI its direction. So let me show you how we keep it there.</p>
@@ -426,7 +399,7 @@
     </div>
     <p class="ref hl-ref">Follows Anthropic's own guidance: <a href="https://www.anthropic.com/engineering/claude-code-best-practices">Best practices for Claude Code</a> (explore, plan, code, commit) · <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents">Effective harnesses for long-running agents</a></p>
     <aside class="notes">
-      <p><strong>[14:15 · ~2m]</strong> This is our agentic engineering framework. Two lanes: what the engineer does and what the agent does. And under each step, why we do it, backed by research.</p>
+      <p><strong>[13:35 · ~2m]</strong> This is our agentic engineering framework. Two lanes: what the engineer does and what the agent does. And under each step, why we do it, backed by research.</p>
       <ul>
         <li><strong>1. Set the direction (engineer).</strong> A task, a Jira ticket or a bug fix. Decisions get written down, not left in a chat, because in Anthropic's Project Vend, Claude running a small shop gave stock away, reversed decisions and invented details.</li>
         <li><strong>2. Read and plan (agent).</strong> It reads the code, rules and ADRs, then writes a phased plan with a diagram. Anthropic found agents try to do too much at once and leave a mess, so: one task at a time, progress written down.</li>
@@ -472,7 +445,7 @@ Stop after creating this plan and wait for user review.</div>
       </ul>
     </div>
     <aside class="notes">
-      <p><strong>[16:15 · ~1m]</strong> I packaged this as a reusable agent skill, the development planner. When an agent gets a non-trivial task, it has to produce this file first.</p>
+      <p><strong>[15:35 · ~1m]</strong> I packaged this as a reusable agent skill, the development planner. When an agent gets a non-trivial task, it has to produce this file first.</p>
       <ul>
         <li>It starts with context gathering: read the code, docs and tests. No planning in a vacuum.</li>
         <li>It extends existing patterns instead of rewriting them. That's how you keep architecture intact when agents write a lot of code.</li>
@@ -538,7 +511,7 @@ Stop after creating this plan and wait for user review.</div>
     </div>
     <div class="callout">Approve the picture before the code. Reviewers know what to expect, and the PR gets reviewed faster.</div>
     <aside class="notes">
-      <p><strong>[17:15 · ~1m10s]</strong> Before I approve a plan, I ask the agent to draw it. Usually Mermaid, sometimes draw.io.</p>
+      <p><strong>[16:35 · ~1m10s]</strong> Before I approve a plan, I ask the agent to draw it. Usually Mermaid, sometimes draw.io.</p>
       <p>In ten seconds I can see what's new, what changes, what stays the same, and in which phase each piece gets built. If the architecture is wrong, or it's over-engineered, I catch it here, before a single line of code.</p>
       <p>It also helps the team: whoever reviews the PR has already seen the picture, so they know what to expect and review much faster.</p>
     </aside>
@@ -557,7 +530,7 @@ Stop after creating this plan and wait for user review.</div>
     </div>
     <div class="run-loop"><strong>Engineering hasn't changed.</strong> CI/CD is still there. We just execute faster, so people review and decide instead of writing every line.</div>
     <aside class="notes">
-      <p><strong>[18:30 · ~35s]</strong> Once the plan is approved, this is how we run it to the end.</p>
+      <p><strong>[17:50 · ~35s]</strong> Once the plan is approved, this is how we run it to the end.</p>
       <p>One: build one stage, the code and its unit tests, only for the next phase. Two: prove it. Unit tests pass, and we do manual testing when it's needed. That's a loop: build, prove, build, prove, until the task, the ticket or the bug fix is done.</p>
       <p>Three: approve and ship. The PR carries the plan and the diagram, so the human review is much faster. And our normal CI/CD runs, exactly as before.</p>
       <p>We're not changing how engineering is done. We're executing it faster and more automatically, so people can focus on reviewing and deciding instead of writing every line.</p>
@@ -577,7 +550,7 @@ Stop after creating this plan and wait for user review.</div>
       <div class="take speed"><span class="num">5</span><div><em>When you build with agents</em><strong>Plan first, then build in proven stages.</strong></div><span class="d">Plan and diagram, human approval, tests at every stage. CI/CD unchanged.</span></div>
     </div>
     <aside class="notes">
-      <p><strong>[19:00 · ~45s]</strong> Remember the goal: think twice. Here's what to do at each of those moments.</p>
+      <p><strong>[18:20 · ~45s]</strong> Remember the goal: think twice. Here's what to do at each of those moments.</p>
       <ul>
         <li>Before you accept a project: define the metric of success. One primary metric, tied to an OKR. That's the difference between my first story and my second.</li>
         <li>Before you commit to a number: investigate first. Test the theory with what exists today. That's how we found the 40% before building anything.</li>
@@ -593,7 +566,7 @@ Stop after creating this plan and wait for user review.</div>
     <p>Questions?</p>
     <p style="margin-top: 40px; font-size: 20px;">Gilbert Pochet · github.com/gilbertofp16</p>
     <aside class="notes">
-      <p><strong>[19:45]</strong> Open for Q&amp;A.</p>
+      <p><strong>[19:05]</strong> Open for Q&amp;A.</p>
       <p>Likely questions:</p>
       <ul>
         <li>How do you build a golden dataset with no labelled data? Start with 50–100 real cases labelled by domain experts, then grow it from production failures.</li>

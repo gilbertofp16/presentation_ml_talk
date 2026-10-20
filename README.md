@@ -25,16 +25,16 @@ styles.css     layout and theme (one accent colour per section)
 deck.js        navigation, notes, presenter sync
 ```
 
-## Outline and timing (about 20 min)
+## Outline and timing (about 19 min)
 
 | # | Section | Slides | Time |
 |---|---------|--------|------|
 | 0 | Opening: title, goal of the talk ("think twice"), hook, staircase | 1–4 | 2 min |
 | 1 | The prototype trap: what production really needs, pilot purgatory | 5–6 | 1.5 min |
 | 2 | Prove the impact: start from the decision (OKRs), SEEK (wrong finish line), Mr Yum (done right) | 7–12 | 7 min |
-| 3 | Build for production: golden rule, hidden technical debt, lifecycle then vs now | 13–15 | 3 min |
+| 3 | Build for production: golden rule, "Agentic engineering" divider, lifecycle then vs now | 13–15 | 2.25 min |
 | 4 | Scale the team: role has changed, agentic engineering framework, development plan, plan diagram, run the plan stage by stage | 16–20 | 5.5 min |
-| 5 | Close: four takeaways, Q&A | 21–22 | 0.75 min |
+| 5 | Close: five takeaways, Q&A | 21–22 | 0.75 min |
 
 Slide numbers are shown in the bottom-right corner of every slide.
 

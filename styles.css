@@ -518,6 +518,11 @@ p, li { font-size: 21px; line-height: 1.45; }
 
 .golden .sub { margin-top: 36px; font-size: 26px; color: var(--muted); max-width: 900px; }
 
+/* ---------- Section divider ---------- */
+
+.divider { justify-content: center; }
+.divider h2 { font-size: 96px; color: var(--accent); margin: 0; }
+
 /* ---------- 9. Hidden technical debt ---------- */
 
 .debt-grid {
